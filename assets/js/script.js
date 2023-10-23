@@ -32,6 +32,10 @@ var questions = [
 var buttonStart = document.querySelector("#startQuiz");
 var startContent = document.querySelector("#startContent");
 var quizContent = document.querySelector("#quizContent");
+var resultsContent = document.querySelector("#resultsContent");
+var timer = document.querySelector("#timeLeft");
+
+var time = 10;
 
 function showQuiz(){
 
@@ -117,6 +121,13 @@ function showQuiz(){
 
 }
 
+function showScore() {
+    quizContent.style.display = "none";
+
+    resultsContent.style.display = "block";
+    resultsContent.style.textAlign = "center";
+
+}
 
 buttonStart.addEventListener("click", function() {
 
@@ -128,5 +139,18 @@ buttonStart.addEventListener("click", function() {
 
 
     showQuiz(); // start showing the quiz!
+
+// Sets timer 
+  var timerInterval = setInterval(function() {
+    time--;
+    timer.textContent = time;
+
+    if(time <= 0) {
+      // stops the timer
+      clearInterval(timerInterval);
+      showScore();
+    }
+
+  }, 1000);
 
 });
