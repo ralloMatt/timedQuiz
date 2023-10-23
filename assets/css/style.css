@@ -1,5 +1,6 @@
 :root { /*CSS Variables */
     --buttonColor: greenyellow;
+    --buttonHover: rgb(104, 173, 0);
 }
 
 .rowHeader { 
@@ -31,19 +32,44 @@
     margin: 30px;
     width: 400px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
+.buttonStyle:hover {
+    background-color: var(--buttonHover);
+}
 
 #resultsContent {
     display: none;
 }
+
 h1 {
     font-size: 45px;
+    text-align: center;
 }
 
 h2 {
     font-size: 30px;
     text-align: center;
+}
+
+input[type=text], select {
+    width: 50%;
+    padding: 20px;
+    margin: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type=submit] {
+    width: 50%;
+    background-color: var(--buttonColor);
+    font-size: 20px;
+    font-weight: bold;
+    padding:20px;
+    margin: 8px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 /*Media Queries */
