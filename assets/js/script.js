@@ -7,7 +7,6 @@ var questions = [
         C: "A way of utilizing $ to refer to DOM elements",
         D: "A way of showing videos on a webpage",
         answer: "A",
-        shown: false,
     },
     {
         question: "What is JQuery?",
@@ -16,7 +15,6 @@ var questions = [
         C: "A way of including responsiveness on page size.",
         D: "Queries of the letter J.",
         answer: "B",
-        shown: false,
     },
     {
         question: "What does CSS stand for?",
@@ -25,7 +23,6 @@ var questions = [
         C: "Color Style Sheets",
         D: "Cascading Style Sheets",
         answer: "D",
-        shown: false,
     }
   ];
 
@@ -35,20 +32,24 @@ var quizContent = document.querySelector("#quizContent");
 var resultsContent = document.querySelector("#resultsContent");
 var timer = document.querySelector("#timeLeft");
 
-var time = 10;
+var time = 60;
+
+var correctAnswers = 0;
+var wrongAnswers = 0;
+var points = 0;
 
 function showQuiz(){
 
+
     var buttonList = document.querySelector("#choices"); // get section for button list
-    buttonList.style.textAlign = "center";
+    buttonList.style.textAlign = "center"; // center the buttons
 
     // find a random element in array
     var randomIndex = Math.floor(Math.random() * questions.length);
-
-
-    var questionDisplay = document.getElementById("question");
-    questionDisplay.innerHTML = questions[randomIndex].question; // show question
-    questionDisplay.style.textAlign = "center";
+    
+    var questionDisplay = document.getElementById("question"); // find the html element for the question
+    questionDisplay.innerHTML = questions[randomIndex].question; // show question in that html element
+    questionDisplay.style.textAlign = "center"; // center it up
 
     // create buttons and add content in buttons
     var buttonA = document.createElement("button");
@@ -77,48 +78,88 @@ function showQuiz(){
     validness.style.padding = "30px";
 
     // create click events for each button
+    // Also keep track of scores for each question answered
+    // As well as deduct time if answered wrong
     buttonA.addEventListener("click", function() {
         // if clicked we know A
         if(questions[randomIndex].answer == "A"){ // correct
             validness.style.color = "green";
             validness.innerHTML = "Correct!";
+            correctAnswers++;
+            points += 10; 
         } else { // incorrect
             validness.style.color = "red";
             validness.innerHTML = "Incorrect!";
+            wrongAnswers++;
+            time -= 10;
         }
+
+        while (buttonList.firstChild) { // remove the buttons
+            buttonList.removeChild(buttonList.lastChild);
+          }
+
+        showQuiz(); // show new question
     });
     buttonB.addEventListener("click", function() {
         // if clicked we know B
         if(questions[randomIndex].answer == "B"){ // correct
             validness.style.color = "green";
             validness.innerHTML = "Correct!";
+            correctAnswers++;
+            points += 10; 
         } else { // incorrect
             validness.style.color = "red";
             validness.innerHTML = "Incorrect!";
+            wrongAnswers++;
+            time -= 10;
         }
+       
+        while (buttonList.firstChild) { // remove the buttons
+            buttonList.removeChild(buttonList.lastChild);
+          }
+
+        showQuiz(); // show new question
     });
     buttonC.addEventListener("click", function() {
         // if clicked we know C
         if(questions[randomIndex].answer == "C"){ // correct
             validness.style.color = "green";
             validness.innerHTML = "Correct!";
+            correctAnswers++;
+            points += 10; 
         } else { // incorrect
             validness.style.color = "red";
             validness.innerHTML = "Incorrect!";
+            wrongAnswers++;
+            time -= 10;
         }
+
+        while (buttonList.firstChild) { // remove the buttons
+            buttonList.removeChild(buttonList.lastChild);
+          }
+
+        showQuiz(); // show new question
     });
     buttonD.addEventListener("click", function() {
         // if clicked we know D
         if(questions[randomIndex].answer == "D"){ // correct
             validness.style.color = "green";
             validness.innerHTML = "Correct!";
+            correctAnswers++;
+            points += 10; 
         } else { // incorrect
             validness.style.color = "red";
             validness.innerHTML = "Incorrect!";
+            wrongAnswers++;
+            time -= 10;
         }
+
+        while (buttonList.firstChild) { // remove the buttons
+            buttonList.removeChild(buttonList.lastChild);
+          }
+
+        showQuiz(); // show new question
     });
-
-
 }
 
 function showScore() {
@@ -126,6 +167,10 @@ function showScore() {
 
     resultsContent.style.display = "block";
     resultsContent.style.textAlign = "center";
+
+    document.getElementById("answeredRight").textContent = correctAnswers;
+    document.getElementById("answeredWrong").textContent = wrongAnswers;
+    document.getElementById("score").textContent = points;
 
 }
 
