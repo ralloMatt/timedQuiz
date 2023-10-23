@@ -214,7 +214,7 @@ form.addEventListener("submit", function(event){
 
     var initials = userInitials.value;  // get text from that field
 
-    var scoreLog = initials + " " + points; // create string of text and points user made
+    var scoreLog = initials + "  -  " + points; // create string of text and points user made
 
     allMyScores.push(scoreLog); // put user score inside array of all the scored
 
