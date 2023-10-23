@@ -26,20 +26,21 @@ var questions = [
     }
   ];
 
-var buttonStart = document.querySelector("#startQuiz");
-var startContent = document.querySelector("#startContent");
-var quizContent = document.querySelector("#quizContent");
-var resultsContent = document.querySelector("#resultsContent");
-var timer = document.querySelector("#timeLeft");
+var buttonStart = document.querySelector("#startQuiz"); // Start button
+var startContent = document.querySelector("#startContent"); // Section with the start content 
+var quizContent = document.querySelector("#quizContent"); // Section with the quiz content
+var resultsContent = document.querySelector("#resultsContent"); // Section with the result content
+var timer = document.querySelector("#timeLeft"); // The time in the upper right corner
 
-var time = 60;
+var form = document.querySelector("#submitInitialsForm"); // form when user enters initials
 
-var correctAnswers = 0;
-var wrongAnswers = 0;
-var points = 0;
+var time = 60; // Set time to 60 seconds
+ 
+var correctAnswers = 0; // keep track of questions answered right
+var wrongAnswers = 0; // keep track of questions answered wrong
+var points = 0; // keep track of points earned
 
 function showQuiz(){
-
 
     var buttonList = document.querySelector("#choices"); // get section for button list
     buttonList.style.textAlign = "center"; // center the buttons
@@ -162,19 +163,19 @@ function showQuiz(){
     });
 }
 
-function showScore() {
-    quizContent.style.display = "none";
+function showScore() { // show the score user got
+    quizContent.style.display = "none"; // stop display quiz
 
-    resultsContent.style.display = "block";
-    resultsContent.style.textAlign = "center";
+    resultsContent.style.display = "block"; // display result content
+    resultsContent.style.textAlign = "center"; // center it up
 
+    // Set information
     document.getElementById("answeredRight").textContent = correctAnswers;
     document.getElementById("answeredWrong").textContent = wrongAnswers;
     document.getElementById("score").textContent = points;
-
 }
 
-buttonStart.addEventListener("click", function() {
+buttonStart.addEventListener("click", function() { // when start quiz is clicked
 
     //Don't show the start content
     startContent.style.display = "none";
@@ -182,20 +183,42 @@ buttonStart.addEventListener("click", function() {
     //Show the quiz content
     quizContent.style.display = "block";
 
-
     showQuiz(); // start showing the quiz!
 
-// Sets timer 
-  var timerInterval = setInterval(function() {
-    time--;
-    timer.textContent = time;
+    // Set timer 
+    var timerInterval = setInterval(function() {
+        time--;
+        timer.textContent = time;
 
-    if(time <= 0) {
-      // stops the timer
-      clearInterval(timerInterval);
-      showScore();
+        if(time <= 0) {
+            //stops the timer
+            clearInterval(timerInterval);
+            showScore();
+        }
+
+    }, 1000);
+});
+
+form.addEventListener("submit", function(event){
+    event.preventDefault(); // prevent page loading
+
+    var allMyScores = []; // array of all scores
+
+    var storedScores = JSON.parse(localStorage.getItem("allMyScores")); // get all my scores from local storage
+
+    if (storedScores !== null) { // if there is something in local storage
+        allMyScores = storedScores; // set my variable to that
     }
+    
+    var userInitials = document.querySelector("#userInitials"); // get user input field
 
-  }, 1000);
+    var initials = userInitials.value;  // get text from that field
 
+    var scoreLog = initials + " " + points; // create string of text and points user made
+
+    allMyScores.push(scoreLog); // put user score inside array of all the scored
+
+    localStorage.setItem("allMyScores", JSON.stringify(allMyScores)); // set the full array in local storage
+
+    window.location.replace("highScore.html"); // redirect to score page
 });
