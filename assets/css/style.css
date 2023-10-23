@@ -1,0 +1,52 @@
+:root { /*CSS Variables */
+    --buttonColor: greenyellow;
+}
+
+.rowHeader { 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.colMain {/* Creates Flexbox column for main stuff*/
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.colMainItem { /* Flex item for main flexbox column */
+    width: 1000px;
+    text-align: center;
+}
+
+.buttonStyle{ /* The styles for the buttons */
+    background-color:var(--buttonColor);
+    padding: 25px 32px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 30px;
+    width: 400px;
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+/*Media Queries */
+@media screen and (max-width: 992px) { /* When screen is smaller */
+    .colMainItem { /* Flex item for main flexbox column */
+        width: auto;
+    }
+    .buttonStyle {
+        width: 400px;
+    }
+}
