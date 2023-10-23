@@ -30,10 +30,13 @@ var questions = [
   ];
 
 var buttonStart = document.querySelector("#startQuiz");
+var startContent = document.querySelector("#startContent");
+var quizContent = document.querySelector("#quizContent");
 
 function showQuiz(){
 
     var buttonList = document.querySelector("#choices"); // get section for button list
+    buttonList.style.textAlign = "center";
 
     // find a random element in array
     var randomIndex = Math.floor(Math.random() * questions.length);
@@ -42,7 +45,6 @@ function showQuiz(){
     var questionDisplay = document.getElementById("question");
     questionDisplay.innerHTML = questions[randomIndex].question; // show question
     questionDisplay.style.textAlign = "center";
-    buttonList.style.textAlign = "center";
 
     // create buttons and add content in buttons
     var buttonA = document.createElement("button");
@@ -65,7 +67,53 @@ function showQuiz(){
     buttonD.classList.add("buttonStyle");
     buttonList.appendChild(buttonD);
 
-    
+    var validness = document.getElementById("validness");
+    validness.style.textAlign = "center";
+    validness.style.borderTop = "thick solid black";
+    validness.style.padding = "30px";
+
+    // create click events for each button
+    buttonA.addEventListener("click", function() {
+        // if clicked we know A
+        if(questions[randomIndex].answer == "A"){ // correct
+            validness.style.color = "green";
+            validness.innerHTML = "Correct!";
+        } else { // incorrect
+            validness.style.color = "red";
+            validness.innerHTML = "Incorrect!";
+        }
+    });
+    buttonB.addEventListener("click", function() {
+        // if clicked we know B
+        if(questions[randomIndex].answer == "B"){ // correct
+            validness.style.color = "green";
+            validness.innerHTML = "Correct!";
+        } else { // incorrect
+            validness.style.color = "red";
+            validness.innerHTML = "Incorrect!";
+        }
+    });
+    buttonC.addEventListener("click", function() {
+        // if clicked we know C
+        if(questions[randomIndex].answer == "C"){ // correct
+            validness.style.color = "green";
+            validness.innerHTML = "Correct!";
+        } else { // incorrect
+            validness.style.color = "red";
+            validness.innerHTML = "Incorrect!";
+        }
+    });
+    buttonD.addEventListener("click", function() {
+        // if clicked we know D
+        if(questions[randomIndex].answer == "D"){ // correct
+            validness.style.color = "green";
+            validness.innerHTML = "Correct!";
+        } else { // incorrect
+            validness.style.color = "red";
+            validness.innerHTML = "Incorrect!";
+        }
+    });
+
 
 }
 
@@ -73,11 +121,9 @@ function showQuiz(){
 buttonStart.addEventListener("click", function() {
 
     //Don't show the start content
-    var startContent = document.querySelector("#startContent");
     startContent.style.display = "none";
 
     //Show the quiz content
-    var quizContent = document.querySelector("#quizContent");
     quizContent.style.display = "block";
 
 
