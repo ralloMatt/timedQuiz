@@ -15,15 +15,26 @@
         </section>
     </header>
 
-    <section class="colMain">
+    <section class="colMain" id="startContent"> <!-- Start Content -->
         <h1 class="colMainItem">Coding Quiz Challenge</h1>
 
         <h2 class="colMainItem">Answer the following questions within the time limit. These are coding related questions that you should know. You have one minutes to answer all questions. Also when you answer incorrectly, 10 seconds will be subtracted!</h2>
 
         <button id="startQuiz" class="colMainItem buttonStyle">Start Quiz!</button>
+    </section>
+
+    <section class="colMain" id="quizContent"> <!-- Quiz Content -->
+
+        <h2 id="question"></h2> <!-- Question -->
+        <section id="choices"></section> <!-- Where the buttons will be displayed -->
 
     </section>
 
+    <section id="resultsContent">   <!-- Final Results-->
+        <h1>Results: </h1>
+        <h2></h2>
+        <form></form>
+    </section>
 
     <script src="./assets/js/script.js"></script>
   </body>

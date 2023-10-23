@@ -33,12 +33,17 @@
     cursor: pointer;
 }
 
+
+#resultsContent {
+    display: none;
+}
 h1 {
     font-size: 45px;
 }
 
 h2 {
     font-size: 30px;
+    text-align: center;
 }
 
 /*Media Queries */
